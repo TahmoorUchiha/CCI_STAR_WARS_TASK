@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="StarWarsVehicles">
+
+<head>
+  <title>Star Wars Vehicles</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-resource.js"></script>
+  <script src="js/app.js"></script>
+</head>
+
+<body ng-controller="MainController">
+  <center ng-init="init()">
+    
+    <h2>Vehicles</h2>
+    
+    <div>
+    <input type="text" ng-model="searchWord" ng-change="onTextChanged(searchWord)"placeholder="Search Vehicles">
+    </div>
+
+    <div ng-if="loading">
+        Loading...
+    </div>
+
+    <div ng-if="!loading">
+        <table>
+            <th>Name</th>
+            <th>Cost In Credits</th>
+            <th>Length</th>
+
+            <tr ng-repeat="vehicle in vehicles">
+                <td title="Name">{{vehicle.name}}</td>
+                <td title="Cost In Credits" >{{vehicle.cost_in_credits}}</td>
+                <td title="Length" >{{vehicle.length}}</td>
+            </tr>
+         </table>
+    </div>
+
+    <div>
+        <button ng-click="goToPreviousPage()" ng-disabled="!prevPage">Previous</button>
+        <button ng-click="goToNextPage()" ng-disabled="!nextPage">Next</button>
+    </div>
+
+    <div>{{first}} - {{last}} out of {{count}}</div>
+
+</center>
+</body>
+</html>
